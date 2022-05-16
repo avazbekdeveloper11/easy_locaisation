@@ -1,15 +1,20 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:esasy_localisation_/screens/home_page/home_page.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 Future<void> main() async {
+  await WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
   runApp(
     EasyLocalization(
       supportedLocales: const [
-        Locale("en", "EN"),
-        Locale("uz", "UZ"),
+        Locale("en"),
+        Locale("uz"),
       ],
-      path: "assets/lang/",
+      startLocale: Locale("uz"),
+      fallbackLocale: const Locale("uz"),
+      path: "assets/lang",
       child: const MyApp(),
     ),
   );
@@ -21,8 +26,12 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return  MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Easy localisation',
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales, 
+      locale: context.locale,
       home: HomePage(),
     );
   }

@@ -8,24 +8,26 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("HI".tr()),
+        title: Text("hi".tr()),
       ),
-      body: Column(
-        children: [
-          Text("welcome".tr()),
-          ElevatedButton(
-            onPressed: () {
-              context.locale = Locale("uz", "UZ");
-            },
-            child: Text("uz"),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              context.locale = Locale("en", "EN");
-            },
-            child: Text("en"),
-          )
-        ],
+      body: Center(
+        child: Column(
+          children: [
+            Text("welcome".tr()),
+            ElevatedButton(
+              onPressed: () {
+                context.setLocale(Locale("uz",));
+              },
+              child: Text("uz"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                context.setLocale(Locale("en"));
+              },
+              child: Text("en"),
+            )
+          ],
+        ),
       ),
     );
   }
